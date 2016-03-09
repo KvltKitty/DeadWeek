@@ -49,16 +49,18 @@ public class PlayerMachine : SuperStateMachine {
     {
         // Rotate out facing direction horizontally based on mouse input
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(input.Current.MouseInput.x, input.Current.MouseInput.y) * Mathf.Rad2Deg, transform.eulerAngles.z);
+        if(Mathf.Abs(input.Current.MouseInput.x) == 0 && Mathf.Abs(input.Current.MouseInput.y) == 0)
+        {
+            return;
+        }
         Vector3 targetDirection = new Vector3(input.Current.MouseInput.x, 0.0f, input.Current.MouseInput.y);
-        float angle = Vector3.Angle(transform.forward, targetDirection);
-        if(angle > 1) { 
+        float angle = Vector3.Angle(AnimatedMesh.transform.forward, targetDirection);
+        //lookDirection = AnimatedMesh.transform.localEulerAngles;
+
+       
         lookDirection = new Vector3(input.Current.MouseInput.x, 0.0f, -input.Current.MouseInput.y);
             
-        }
-        else
-        {
-            lookDirection = transform.forward;
-        }
+    
         // Put any code in here you want to run BEFORE the state's update function.
         // This is run regardless of what state you're in
     }
