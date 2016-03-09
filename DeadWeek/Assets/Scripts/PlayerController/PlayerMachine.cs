@@ -49,7 +49,7 @@ public class PlayerMachine : SuperStateMachine {
     {
         // Rotate out facing direction horizontally based on mouse input
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(input.Current.MouseInput.x, input.Current.MouseInput.y) * Mathf.Rad2Deg, transform.eulerAngles.z);
-        if(Mathf.Abs(input.Current.MouseInput.x) == 0 && Mathf.Abs(input.Current.MouseInput.y) == 0)
+        if(Mathf.Abs(input.Current.MouseInput.x) <= 0.4f && Mathf.Abs(input.Current.MouseInput.y) <= 0.4f)
         {
             return;
         }

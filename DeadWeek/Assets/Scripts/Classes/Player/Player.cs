@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 		casting = false;
 		sightLine = gameObject.GetComponent<LineRenderer>();
         interact = transform.GetChild(1);
-        Debug.Log(interact.gameObject.name);
+        
 	}
 
 	void FixedUpdate()
@@ -124,9 +124,7 @@ public class Player : MonoBehaviour
 	}
 
 	void OnTriggerEnter (Collider other) {
-		Debug.Log ("Hit");
 		if (other.gameObject.tag == "Key") {
-			Debug.Log ("Hit Key");
 			hasKey = true;
 			Destroy (other.gameObject);
 		}

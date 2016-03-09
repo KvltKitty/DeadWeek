@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Classes\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Classes\Enemy\Guard.cs" />
     <Compile Include="Assets\Scripts\Classes\Enemy\Monster.cs" />
+    <Compile Include="Assets\Scripts\Classes\Player\Interact.cs" />
     <Compile Include="Assets\Scripts\Classes\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Classes\UI\Yearbook.cs" />
     <Compile Include="Assets\Scripts\Objects\EmitSound.cs" />
