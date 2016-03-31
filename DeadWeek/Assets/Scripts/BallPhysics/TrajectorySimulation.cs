@@ -12,6 +12,7 @@ public class TrajectorySimulation : MonoBehaviour
 
 	public int ballSpeed;
 	public float maxDistanceToGoal = 0.1f;
+    private int originalSpeed;
 	
 	// Reference to a Component that holds information about fire strength, location of cannon, etc.
 	public PlayerFire playerFire;
@@ -39,8 +40,8 @@ public class TrajectorySimulation : MonoBehaviour
 	void Start()
 	{
 		transform.Rotate (Vector3.right * 45.0f, Space.Self);
-		//Debug.Log ("Start");
-
+        //Debug.Log ("Start");
+        originalSpeed = ballSpeed;
 		radius = gameObject.GetComponent<SphereCollider>().radius;
 	}
 
@@ -93,18 +94,21 @@ public class TrajectorySimulation : MonoBehaviour
 			Destroy (sightLine);
 			return;
 		}
-		else if(Vector3.Distance(path[curPathSegment], path[hitPoints[curHitPoint]]) <= maxDistanceToGoal)
+		//else if(Vector3.Distance(path[curPathSegment], path[hitPoints[curHitPoint]]) <= maxDistanceToGoal)
+        else if(Mathf.Abs(curPathSegment - curHitPoint) <= 30)
 		{
-			//GameObject temp = Instantiate (ballSound, path[hitPoints[curHitPoint]], transform.rotation) as GameObject; //instantiate here at hitPoints[curHitPoint]
-			//temp.SendMessage ("initializeVariables", curHitPoint);
+            //GameObject temp = Instantiate (ballSound, path[hitPoints[curHitPoint]], transform.rotation) as GameObject; //instantiate here at hitPoints[curHitPoint]
+            //temp.SendMessage ("initializeVariables", curHitPoint);
 			curHitPoint++;
+            //ballSpeed = originalSpeed;
 			float tempFloat = (float)ballSpeed;
 			tempFloat = Mathf.Floor (tempFloat * 0.80f);
 			ballSpeed = (int) tempFloat;
 		}
 		if(squareMagnitude < (maxDistanceToGoal * maxDistanceToGoal))
 		{
-			curPathSegment+= ballSpeed;
+            //ballSpeed += 3;
+            curPathSegment += ballSpeed;
 		}
 
 	}

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Player : MonoBehaviour 
 {
+    private PlayerInputController _controller;
+
 	public GameObject ball;
 	TrajectorySimulation _simulation;
 	public Ability _abilities;
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
+        _controller = transform.parent.GetComponent<PlayerInputController>();
 		numBalls = 3;
 		inputStrength = 0.0f;
 		fireBall = false;
@@ -77,6 +80,10 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
+        if (_controller.getHiding())
+        {
+            return;
+        }
 		if(numBalls > 0){
 		if(Input.GetAxisRaw ("Fire1") == 1.0f)
 		{
@@ -123,12 +130,15 @@ public class Player : MonoBehaviour
 		_ball.SendMessage("setFireStrength", strength);
 	}
 
-	void OnTriggerEnter (Collider other) {
-		if (other.gameObject.tag == "Key") {
+	void OnTriggerEnter (Collider other)
+    {
+		if (other.gameObject.tag == "Key")
+        {
 			hasKey = true;
 			Destroy (other.gameObject);
 		}
-		if(other.gameObject.tag.Equals ("Ball")){
+		if(other.gameObject.tag.Equals ("Ball"))
+        {
 			Destroy (other.gameObject);
 			numBalls++;
 		}
